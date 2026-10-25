@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import Response
-from app.services.yolo_inference import predict_to_yolo_format
+from app.services.detection import predict_to_yolo_format
 import os
 
 router = APIRouter(prefix="/detection", tags=["Object Detection"])
