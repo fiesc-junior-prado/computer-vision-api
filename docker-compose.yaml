@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: computer_visiob_api
+    ports:
+      - "10000:10000"
+    volumes:
+      # Volume para live-reload durante o desenvolvimento (opcional)
+      - ./app:/app/app
+    command: uv run uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
+    restart: unless-stopped
