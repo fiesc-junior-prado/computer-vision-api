@@ -12,7 +12,7 @@ app = FastAPI(
 # main.py no seu FastAPI
 origins = [
     "http://localhost:5173", # Mantém para testes locais
-    "https://visionc-tau.vercel.app/" # <--- O novo link do frontend em produção
+    "https://visionc-tau.vercel.app" # <--- O novo link do frontend em produção
 ]
 
 app.add_middleware(
