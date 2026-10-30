@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import conversion, visualization, classification, detection
 
 app = FastAPI(
@@ -8,7 +9,19 @@ app = FastAPI(
     version="1.0.0",
     # lifespan=lifespan
 )
+# main.py no seu FastAPI
+origins = [
+    "http://localhost:5173", # Mantém para testes locais
+    "https://visionc-tau.vercel.app/" # <--- O novo link do frontend em produção
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", tags=["Health"])
 async def health():
